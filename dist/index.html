@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      name="description"
+      content="Explore vote counts for eight Ward 27 divisions by year and election type."
+    />
+    <title>PLTV Division Vote Map</title>
+    <link
+      rel="icon"
+      type="image/svg+xml"
+      href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%23012d4a'/%3E%3Cpath d='M12 42 23 18l10 14 8-10 11 20z' fill='%23ffd166'/%3E%3Ccircle cx='46' cy='16' r='6' fill='%23f25f5c'/%3E%3C/svg%3E"
+    />
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+      integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
+      crossorigin=""
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main class="app-shell">
+      <aside class="control-panel" aria-label="Map controls">
+        <header class="brand-block">
+          <p class="eyebrow">Penn Leads the Vote</p>
+          <h1>Division vote map</h1>
+          <p class="lede">Explore vote counts across eight Ward 27 divisions.</p>
+        </header>
+
+        <section class="control-group" aria-labelledby="election-heading">
+          <div class="control-heading">
+            <h2 id="election-heading">Election type</h2>
+            <span class="selection-chip" id="election-value">Primary</span>
+          </div>
+          <div class="segmented-control" id="election-options" role="group" aria-label="Election type"></div>
+        </section>
+
+        <section class="control-group" aria-labelledby="year-heading">
+          <div class="control-heading">
+            <h2 id="year-heading">Year</h2>
+            <output class="year-output" id="year-value" for="year-slider">2014</output>
+          </div>
+          <div class="year-timeline">
+            <input id="year-slider" class="year-slider" type="range" step="1" aria-label="Select year" />
+            <div class="year-ticks" id="year-ticks" aria-hidden="true"></div>
+          </div>
+        </section>
+
+        <section class="snapshot" aria-live="polite" aria-atomic="true">
+          <p class="snapshot-label">Selected view</p>
+          <p class="snapshot-title" id="snapshot-title"></p>
+          <div class="snapshot-stats">
+            <div>
+              <span id="total-votes">—</span>
+              <small>Total votes</small>
+            </div>
+            <div>
+              <span id="highest-division">—</span>
+              <small>Highest division</small>
+            </div>
+          </div>
+        </section>
+
+        <p class="map-hint">Hover over a division for its vote count and dorms. Click on mobile.</p>
+
+        <footer class="source-note">
+          Boundaries: City of Philadelphia OpenDataPhilly. Map tiles: OpenStreetMap.
+        </footer>
+      </aside>
+
+      <section class="map-panel" aria-label="Interactive Ward 27 division map">
+        <div id="map" role="application" aria-label="Vote count choropleth map"></div>
+        <div class="loading-state" id="loading-state" role="status">Loading map data…</div>
+        <div class="error-state" id="error-state" role="alert" hidden>
+          <strong>The map could not load.</strong>
+          <span>Please confirm that the generated data files are present.</span>
+        </div>
+      </section>
+    </main>
+
+    <script
+      src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+      integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
+      crossorigin=""
+    ></script>
+    <script src="app.js" defer></script>
+  </body>
+</html>
