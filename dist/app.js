@@ -21,7 +21,6 @@ const elements = {
   yearTicks: document.querySelector("#year-ticks"),
   snapshotTitle: document.querySelector("#snapshot-title"),
   totalVotes: document.querySelector("#total-votes"),
-  highestDivision: document.querySelector("#highest-division"),
   loadingState: document.querySelector("#loading-state"),
   errorState: document.querySelector("#error-state"),
 };
@@ -170,10 +169,8 @@ function tooltipMarkup(record) {
 
 function updateSnapshot(records) {
   const total = records.reduce((sum, record) => sum + record.voteCount, 0);
-  const highest = [...records].sort((a, b) => b.voteCount - a.voteCount)[0];
   elements.snapshotTitle.textContent = `${state.year} ${state.electionType}`;
   elements.totalVotes.textContent = numberFormat.format(total);
-  elements.highestDivision.textContent = highest ? `Division ${highest.division}` : "—";
 }
 
 function updateLegend(scale) {
@@ -184,7 +181,7 @@ function updateLegend(scale) {
     const gradient = `linear-gradient(90deg, ${COLORS.join(", ")})`;
     container.innerHTML = `
       <strong>Vote Count</strong>
-      <small>${escapeHtml(state.electionType)} · same scale across years</small>
+      <small>${escapeHtml(state.electionType)}</small>
       <div class="legend-gradient" style="background:${gradient}"></div>
       <div class="legend-axis">
         ${scale.ticks.map((value) => `<span>${numberFormat.format(value)}</span>`).join("")}

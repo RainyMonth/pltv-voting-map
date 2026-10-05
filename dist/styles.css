@@ -75,14 +75,6 @@ h1 {
   letter-spacing: -0.055em;
 }
 
-.lede {
-  max-width: 30rem;
-  margin: 1.15rem 0 0;
-  color: var(--muted);
-  font-size: 1rem;
-  line-height: 1.55;
-}
-
 .control-group {
   display: grid;
   gap: 0.85rem;
@@ -274,8 +266,7 @@ h1 {
 
 .snapshot-stats {
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 1rem;
+  grid-template-columns: 1fr;
   margin-top: 1rem;
   padding-top: 1rem;
   border-top: 1px solid rgba(255, 255, 255, 0.18);
@@ -296,24 +287,6 @@ h1 {
 .snapshot-stats small {
   color: #c7dce5;
   font-size: 0.76rem;
-}
-
-.map-hint,
-.source-note {
-  color: var(--muted);
-  line-height: 1.5;
-}
-
-.map-hint {
-  margin: -0.4rem 0 0;
-  font-size: 0.86rem;
-}
-
-.source-note {
-  margin-top: auto;
-  padding-top: 1rem;
-  border-top: 1px solid var(--border);
-  font-size: 0.75rem;
 }
 
 .map-panel {
@@ -355,13 +328,16 @@ h1 {
 }
 
 .vote-tooltip {
-  width: min(19rem, 74vw);
+  width: max-content;
+  min-width: min(16rem, calc(100vw - 2rem));
+  max-width: min(36rem, calc(100vw - 2rem));
   padding: 0.78rem 0.86rem;
   border: 0;
   border-radius: 0.75rem;
   background: rgba(1, 45, 74, 0.96);
   color: white;
   box-shadow: 0 10px 28px rgba(1, 45, 74, 0.28);
+  white-space: normal;
 }
 
 .vote-tooltip::before {
@@ -370,7 +346,7 @@ h1 {
 
 .tooltip-grid {
   display: grid;
-  grid-template-columns: auto 1fr;
+  grid-template-columns: max-content minmax(0, 1fr);
   gap: 0.35rem 0.75rem;
   line-height: 1.35;
 }
@@ -385,6 +361,7 @@ h1 {
   margin: 0;
   font-size: 0.82rem;
   font-weight: 650;
+  overflow-wrap: anywhere;
 }
 
 .map-legend {
@@ -458,16 +435,8 @@ h1 {
     font-size: clamp(2.3rem, 13vw, 3.6rem);
   }
 
-  .lede {
-    margin-top: 0.8rem;
-  }
-
   .snapshot-stats {
-    gap: 0.75rem;
-  }
-
-  .source-note {
-    margin-top: 0;
+    gap: 0;
   }
 
   .map-panel {
